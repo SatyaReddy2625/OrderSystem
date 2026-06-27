@@ -2,6 +2,8 @@ package org.example.ordersystem.controller;
 
 import org.example.ordersystem.model.Order;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,5 +24,15 @@ public class OrderController {
     @GetMapping ("/api/orders/sample")
     public Order getSampleOrder(){
         return new Order("Order01", "customer01",50.0, "Created");
+    }
+
+    /**
+     * This method handles POST requests sent to /api/orders.
+     * @param order represents the Order class.
+     * @return Take the JSON from the request body and convert it into a Java Order object.
+     */
+    @PostMapping ("/api/orders")
+    public Order createOrder(@RequestBody Order order){
+        return order;
     }
 }
