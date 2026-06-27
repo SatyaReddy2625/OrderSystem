@@ -1,16 +1,23 @@
 package org.example.ordersystem.controller;
 
+import org.apache.kafka.common.requests.OffsetDeleteRequest;
 import org.example.ordersystem.model.Order;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+//import java.util.logging.Logger;
 
 /**
  * This class can receive HTTP requests and return responses.
  */
 @RestController
 public class OrderController {
+
+    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     /**
      * This method is used to map to health page.
@@ -33,6 +40,12 @@ public class OrderController {
      */
     @PostMapping ("/api/orders")
     public Order createOrder(@RequestBody Order order){
+
+        logger.info("Received order orderId={}, customerId = {}, cost = {}, status ={} ",
+                order.getOrderId(),
+                order.getCustomerId(),
+                order.getAmount(),
+                order.getStatus());
         return order;
     }
 }
