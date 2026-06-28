@@ -99,3 +99,36 @@ logger.info("Received order: id={}", order.getOrderId());
 - Create an order producer.
 - Publish the order to a Kafka topic.
 - Create a Kafka consumer.
+
+## Kafka Setup
+
+Kafka is running locally using Docker.
+
+### Start Kafka
+
+### powershell
+```docker compose up -d```
+
+### Check Running Containers
+```docker ps```
+### The Kafka container should be running with this name:
+```orders-kafka-broker```
+
+### Create Orders Topic
+```docker exec orders-kafka-broker /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic orders --partitions 3 --replication-factor 1 ```
+### List Topics
+```docker exec orders-kafka-broker /opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list```
+### Expected topic:
+#### orders
+
+## Kafka Learning Notes
+### Broker
+#### A Kafka broker is the Kafka server. It stores messages and serves producers and consumers.
+### Topic
+#### A topic is a named place where Kafka stores messages.
+## For this project, our topic is:
+### orders
+## Producer
+### A producer sends messages to Kafka.
+## Consumer
+### A consumer reads messages from Kafka.
