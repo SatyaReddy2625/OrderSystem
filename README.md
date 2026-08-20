@@ -132,3 +132,13 @@ Kafka is running locally using Docker.
 ### A producer sends messages to Kafka.
 ## Consumer
 ### A consumer reads messages from Kafka.
+
+### Kafka Docker Listener Fix
+
+When Spring Boot runs on Windows and Kafka runs inside Docker, Kafka must advertise an address that the Spring Boot app can reach.
+
+This worked:
+
+```yaml
+KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092

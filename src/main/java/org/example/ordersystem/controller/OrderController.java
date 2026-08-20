@@ -2,6 +2,7 @@ package org.example.ordersystem.controller;
 
 import org.apache.kafka.common.requests.OffsetDeleteRequest;
 import org.example.ordersystem.model.Order;
+import org.example.ordersystem.producer.OrderProducer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,10 @@ public class OrderController {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
+    private  final OrderProducer orderProducer;
+    public OrderController(OrderProducer orderProducer){
+        this.orderProducer = orderProducer;
+    }
     /**
      * This method is used to map to health page.
      * @return String to check the application.
@@ -46,6 +51,10 @@ public class OrderController {
                 order.getCustomerId(),
                 order.getAmount(),
                 order.getStatus());
+        String message = "Order created:" + order.getOrderId();
+        orderProducer.sendOrderMessage(message);
         return order;
+
+
     }
 }
