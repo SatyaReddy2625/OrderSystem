@@ -142,3 +142,9 @@ This worked:
 ```yaml
 KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
 KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+ ```
+
+
+Producer sends message to Kafka
+Consumer reads message from Kafka
+Kafka advertised listener issue and fix

@@ -2,6 +2,7 @@ services:
   broker:
     image: apache/kafka:latest
     container_name: orders-kafka-broker
+    hostname: localhost
     ports:
       - "9092:9092"
     environment:
